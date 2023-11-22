@@ -180,3 +180,72 @@
     where first_name like 'ANA%'
 					    --a "%" indica pro comando LIKE que depois de ANA pode ter qualquer outro resto de nome
 					    --se quiser ignorar se as letras sao maiusculas ou minusculas é so usar o "ILIKE"
+
+
+*FUNÇÕES AGREGADAS*
+    -SERVEM PARA EXECULTAR OPERAÇÕES ARITIMETICAS NAS LINHAS DE UMA COLUNA
+
+    *EXERCICIOS DA AULA*
+
+    --exercicio 1 (contagem de todas as linhas de uma tabela)
+
+    select count (*)
+    from sales.funnel
+
+    --exercicio 2 (conte quantos pagamentos foram registrados na tabela sales.funnel)
+
+    select count(paid_date)
+    from sales.funnel
+
+    --exercicio 3 (conte todos os produtos distintos visitados em jan/21)
+
+    select count (distinct product_id)
+    from sales.funnel
+    where visit_page_date between '20210101' and '20210131'
+
+    --exercicio 4 (conte o valor minimo, maximo e medio dos produtos)
+
+    select min(price), max(price), avg(price)
+    from sales.products
+
+    --exercicio 5 (informe o veiculo mais caro da tabela products)
+
+    select max(price) from sales.products
+
+    select *
+    from sales.products				--isso aqui seria uma sub querie
+    where price = (select max(price) from sales.products)
+
+
+*GROUP BY*
+    -AGRUPA REGISTROS SEMELHANTES DE UMA COLUNA
+
+    *EXERCICIOS DA AULA*
+
+    --exercicio 1 (conte a quatidade de clientes da tabela costumers por estado)
+
+    select state, count (*)
+    from sales.customers
+    group by state
+    order by count desc
+
+    --exercicio 2 (conte a quantidade de clientes por estado e status profissional)
+
+    select state, professional_status, count (*)
+    from sales.customers
+    group by state, professional_status
+    order by state, count desc
+
+*HAVING*
+    -FILTRA LINHAS DE SELEÇÃO POR UMA COLUNA AGRUPADA
+
+    *EXERCICIOS DA AULA*
+
+    --EXERCICIO 1 calcule o numero de clientes por estado filtrando apeanas nos estados com mais de 100 clientes
+
+    select 
+	    state,
+	    count(*)
+    from sales.customers
+    group by state
+    having count(*) > 100
