@@ -249,3 +249,89 @@
     from sales.customers
     group by state
     having count(*) > 100
+
+
+*SUBQUERY*
+    -servem para consutar dados de outras consultas, e so podem retortar 1 valor no where e no select 
+    
+    -- exercicio subquery no *SELECT* 
+    -- Na tabela sales.funnel crie uma coluna que informa o numero de visitas acumuladas que a loja recebeu ate o momento
+    select
+	    fun.visit_id,
+	    fun.visit_page_date,
+	    sto.store_name,
+	    (	
+		    select count(*)
+		    from sales.funnel as fun2
+		    where fun2.visit_page_date <= fun.visit_page_date
+			    and fun2.store_id = fun.store_id
+	    ) as visitas_acumuladas	
+	
+    from sales.funnel as fun
+    left join sales.stores as sto
+	    on fun.store_id = sto.store_id
+    order by sto.store_name, fun.visit_page_date
+
+
+    --exercicio 1- subquery no *WITH*
+    -analise a recorrencia dos leads, calcule o numero de visitas e diga se foi a primeira visita ou nao
+
+    with primeira_visita as (
+	
+	    select customer_id, min(visit_page_date) as visita_1
+    	from sales.funnel
+    	group by customer_id
+
+    )
+
+    select
+    	fun.visit_page_date,
+    	(fun.visit_page_date <> primeira_visita.visita_1) as lead_recorrente,
+    	count(*)
+
+    from sales.funnel as fun
+    left join primeira_visita
+    	on fun.customer_id = primeira_visita.customer_id
+    group by fun.visit_page_date, lead_recorrente
+    order by fun.visit_page_date desc, lead_recorrente
+
+
+exercicio 2
+    with preco_medio as(
+    
+    	select brand, avg(price) as preco_medio_da_marca
+    	from sales.products
+	    group by brand
+    )
+
+    select
+	    fun.visit_id,
+	    fun.visit_page_date,
+	    pro.brand,
+	    (pro.price * (1+fun.discount)) as preco_desconto,
+	    preco_medio.preco_medio_da_marca,
+	    ((prp.price * (1+fun.discount)) - preco_medio.preco_medio_da_marca) as preco_vs_media
+    from sales.funnel as fun
+    left join sales.products as pro
+	    on fun.product_id = pro.product_id
+    left join preco_medio
+	    on pro.brand = pro.preco_medio.brand
+
+
+*TRATAMENTO DE DADOS*
+    -transformar dados de um tipo em outro
+
+    tipos- -->  "::"  <-- Usando os dois pontos 2 vezes voce consegue dizer depois dele qual tipo de dado aquilo representa
+
+    *EXEMPLO*
+
+    select '2021-10-01'::date - '2021-02-25'::date
+    
+    -nesse exemplo, se não for dito que oq esta entre parenteses é uma data ira dar erro
+        alem de data, pode tranformar em "numeric" ou "text"
+
+    
+    porém as vezes os "::" não funcionam por motivos desconhecidos, então
+    nos temos que usar a função --> "CAST" <--
+    
+    select cast('2021-10-01' as date) - cast('2021-02-25' as date)
