@@ -335,3 +335,60 @@ exercicio 2
     nos temos que usar a função --> "CAST" <--
     
     select cast('2021-10-01' as date) - cast('2021-02-25' as date)
+
+*CASE WHEN*
+    -SELECIONA CASOS
+
+    *EXERCICIOS*
+
+    (DEFINA OS CLIENTES EM CLASSES DE VALOR DE SALARIO DE 0-5000, DE 5000-10000 E 10000-15000)      
+    
+    with faixa_de_renda as (
+	    select
+		income,
+		case
+			when income < 5000 then '0-5000'
+			when income >= 5000 and income < 10000 then '5000-10000'
+			when income >= 10000 and income < 15000 then '10000-15000'
+			else '15000+'
+			end as faixa_renda
+	from sales.customers
+
+    )
+
+    select faixa_renda, count(*)
+    from faixa_de_renda
+    group by faixa_renda
+
+
+*CRIAÇÃO DE FUNÇÃO*
+
+    create function datediff (unidade varchar, data_inicial date, data_final date)
+    returns integer 
+    language sql
+
+    as 
+    $$
+
+		    select
+			    case
+				    when unidade in ('d', 'day', 'days') then (data_final - data_inicial)
+		    		when unidade in ('w', 'week', 'weeks') then (data_final - data_inicial)/7
+		    		when unidade in ('m', 'month', 'months') then (data_final - data_inicial)/30
+		    		when unidade in ('y', 'year', 'years') then (data_final - data_inicial)/365
+		    		end as diferenca_data
+    $$
+
+
+*CRIAÇÃO DE TABELA*
+
+    -CRIACAO DE UMA TABELA A PARTIR DE UMA QUERY
+
+    select 
+	    customer_id,
+	    datediff('y', birth_date, current_date) as idade_cliente
+	    into temp_tables.customers_age
+    from sales.customers
+
+    select *
+    from temp_tables.customers_age
