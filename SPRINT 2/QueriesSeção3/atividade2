@@ -1,7 +1,0 @@
-SELECT
-    MAX(valor) AS valor,
-    titulo
-FROM livro
-GROUP BY titulo
-ORDER BY valor DESC
-LIMIT 10;
