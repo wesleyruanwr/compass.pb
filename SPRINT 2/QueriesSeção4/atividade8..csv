@@ -1,0 +1,8 @@
+select
+    v.cdvdd,
+    v.nmvdd
+FROM TBVENDEDOR v
+JOIN TBVENDAS ve ON v.cdvdd = ve.cdvdd
+group by v.cdvdd, v.nmvdd
+order by count(ve.cdvdd) desc
+limit 1

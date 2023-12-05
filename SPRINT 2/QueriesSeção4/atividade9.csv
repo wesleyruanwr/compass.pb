@@ -1,0 +1,15 @@
+SELECT
+    p.cdpro,
+    v.nmpro
+FROM
+    tbestoqueproduto AS p
+JOIN
+    tbvendas AS v ON p.cdpro = v.cdpro
+WHERE
+    v.status = 'Concluído'
+    AND v.dtven BETWEEN '2014-02-03' AND '2018-02-02'
+GROUP BY
+    p.cdpro, v.nmpro
+ORDER BY
+    COUNT(v.cdven) DESC
+LIMIT 1;

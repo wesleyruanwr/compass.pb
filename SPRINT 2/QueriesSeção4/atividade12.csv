@@ -1,0 +1,32 @@
+SELECT
+    d.cddep,
+    d.nmdep,
+    d.dtnasc,
+    SUM(v.qtd * v.vrunt) AS valor_total_vendas
+FROM
+    tbdependente AS d
+JOIN
+    tbvendedor AS vd ON d.cdvdd = vd.cdvdd
+JOIN
+    tbvendas AS v ON vd.cdvdd = v.cdvdd
+WHERE
+    v.status = 'Concluído' AND v.qtd * v.vrunt > 0
+GROUP BY
+    d.cddep, d.nmdep, d.dtnasc
+HAVING
+    valor_total_vendas = (
+        SELECT
+            MIN(total_vendas)
+        FROM
+            (SELECT
+                SUM(qtd * vrunt) AS total_vendas
+            FROM
+                tbvendas
+            WHERE
+                cdvdd = vd.cdvdd AND status = 'Concluído' AND qtd * vrunt > 0
+            GROUP BY
+                cdvdd) AS vendas
+    )
+ORDER BY
+    valor_total_vendas
+limit 1

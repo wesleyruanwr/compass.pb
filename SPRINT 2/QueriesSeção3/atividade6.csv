@@ -1,0 +1,9 @@
+SELECT
+    aut.codAutor,
+    aut.nome,
+    COUNT(l.cod) AS quantidade_publicacoes
+FROM autor as aut
+LEFT JOIN livro l ON aut.codAutor = l.autor
+GROUP BY aut.codAutor, aut.nome
+ORDER BY quantidade_publicacoes DESC
+LIMIT 1;
