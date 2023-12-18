@@ -1,4 +1,3 @@
-# Etapa 5: Lista de atores ordenada pela receita bruta de bilheteria
 def etapa_5():
     with open('C:/Users/Wesley Ruan/compass.pb/SPRINT 3/desafioETL/actors.txt', 'r', encoding='utf-8') as file:
         lines = file.readlines()

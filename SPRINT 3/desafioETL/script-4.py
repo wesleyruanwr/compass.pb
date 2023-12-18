@@ -16,6 +16,6 @@ def etapa_4():
 
     with open('etapa-4.txt', 'w', encoding='utf-8') as output_file:
         for movie, count in sorted_movies:
-            output_file.write(f'{movie} aparece {count} vez(es) no dataset.\n') #uso o \n para quebrar a linha
+            output_file.write(f'{movie} aparece {count} vez(es) no dataset.\n') 
 
 etapa_4()
