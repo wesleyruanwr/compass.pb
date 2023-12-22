@@ -17,3 +17,12 @@
 *-rm* = remove o container da maquina
     se estiver rodando o container no momento, usar o *-f* para forcar a remocao
 
+**imagem**
+
+*from* = ter uma imagem base
+
+*workdir* = diz o diretorio que a imagem vai trabalhar
+
+*expose* = expoe a porta da aplicação
+
+*copy* = copia arquivos para a imagem
