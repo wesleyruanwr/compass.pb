@@ -26,3 +26,12 @@
 *expose* = expoe a porta da aplicação
 
 *copy* = copia arquivos para a imagem
+
+
+**layer** = cada instrução do Docker é uma layer
+        quando algo é atualizado apenas as layers depois da linha atualizada sao refeitas, o resto fica em cache deixando o bild mais rapidos
+
+
+*pull* = baixar uma imagem para ser rodada localmente
+
+*--help* = todas as opcoes disponiveis nos comandos
