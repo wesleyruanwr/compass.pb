@@ -35,3 +35,13 @@
 *pull* = baixar uma imagem para ser rodada localmente
 
 *--help* = todas as opcoes disponiveis nos comandos
+
+
+**volumes** = forma de persistir dados sem depender de containers, todo dado criado por um container é salvo no próprio, quando o container é removido os dados são perdidos. Então os volumes são necessários para fazer beckups e gerenciar os dados
+
+*tipos*
+    *anonimo* = é criado pela flag *"-v"* porem com um nome aleatorio
+    *nomeados*
+    *bind mounts* = uma fomra de salvar os dados na nossa maquina sem o gerenciamento do docker
+
+    
