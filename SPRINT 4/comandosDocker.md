@@ -44,4 +44,11 @@
     *nomeados*
     *bind mounts* = uma fomra de salvar os dados na nossa maquina sem o gerenciamento do docker
 
-    
+
+**Docker Swarm**
+
+*nodes* = é uma isntancia (maquina) que participa da Swarm
+*Manager node* = node que regencia os outros
+*worker node* = nodes que trabalham em funcao do menager
+*sevice* = Um conjunto de tasks que o manager manda para os workers
+*taks* = comandos que são executados pelos nodes
