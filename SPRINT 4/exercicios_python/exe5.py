@@ -3,7 +3,6 @@ arquivo = 'estudantes.csv'
 
 with open(arquivo, 'r') as arquivo:
     leitura = csv.reader(arquivo)
-    next(leitura)
     listOrd = sorted(leitura)
 
     for l in listOrd:
