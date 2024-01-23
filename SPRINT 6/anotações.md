@@ -22,3 +22,5 @@
 **athena** - serviço de consultas em SQL
 
 **EMR** - processamento de dados em grande escala
+
+**Lambda** - executa código em resposta a eventos
