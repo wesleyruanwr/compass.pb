@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('actors.csv')
+df = pd.read_csv('\\Users\\Wesley Ruan\\compass.pb\\SPRINT 7\\exercícios python\\actors.csv')
 df['Average per Movie'] = df['Total Gross'] / df['Number of Movies']
 atorMaiorMedia = df.loc[df['Average per Movie'].idxmax()]
 

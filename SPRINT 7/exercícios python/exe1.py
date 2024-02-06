@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('actors.csv')
+df = pd.read_csv('\\Users\\Wesley Ruan\\compass.pb\\SPRINT 7\\exercícios python\\actors.csv')
 maxFilmesAtor= df.loc[df['Number of Movies'].idxmax()]
 
 print(f'a pessoa que fez mais filmes foi:', maxFilmesAtor['Actor'])
