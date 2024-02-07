@@ -28,7 +28,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 df = spark.read.text("/home/jovyan/pasta/README.md")
-- eu coloquei o arquivo README dentro de uma pasta no container
+
 contador_palavras = df.select(explode(split(df.value, " ")).alias("word")) \
     .filter(col("word") != "") \
     .groupBy("word") \
