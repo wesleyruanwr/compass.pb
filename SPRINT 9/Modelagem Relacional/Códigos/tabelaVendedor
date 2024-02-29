@@ -1,0 +1,6 @@
+CREATE TABLE Vendedor (
+    idVendedor INT PRIMARY KEY,
+    nomeVendedor VARCHAR(15),
+    sexoVendedor SMALLINT,
+    estadoVendedor VARCHAR(40)
+);

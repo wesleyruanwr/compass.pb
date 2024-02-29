@@ -1,0 +1,4 @@
+CREATE TABLE Combustivel (
+    idCombustivel INT PRIMARY KEY,
+    tipoCombustivel VARCHAR(20)
+);

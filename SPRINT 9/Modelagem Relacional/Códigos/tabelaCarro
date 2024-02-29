@@ -1,0 +1,7 @@
+CREATE TABLE Carro (
+    idCarro INT PRIMARY KEY,
+    classiCarro VARCHAR(50),
+    marcaCarro VARCHAR(80),
+    modeloCarro VARCHAR(80),
+    anoCarro INT
+);
