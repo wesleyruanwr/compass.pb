@@ -1,0 +1,4 @@
+CREATE TABLE DimCombustivel (
+    idCombustivel INT PRIMARY KEY,
+    tipoCombustivel VARCHAR(20)
+);

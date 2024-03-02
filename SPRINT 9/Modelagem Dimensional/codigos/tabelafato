@@ -1,0 +1,17 @@
+CREATE TABLE FatoLocacao (
+    idLocacao INT PRIMARY KEY,
+    idCliente INT,
+    idCarro INT,
+    idCombustivel INT,
+    idVendedor INT,
+    dataLocacao DATETIME,
+    horaLocacao TIME,
+    qtdDiaria INT,
+    vlrDiaria DECIMAL(18,2),
+    dataEntrega DATE,
+    horaEntrega TIME,
+    FOREIGN KEY (idCliente) REFERENCES DimCliente(idCliente),
+    FOREIGN KEY (idCarro) REFERENCES DimCarro(idCarro),
+    FOREIGN KEY (idCombustivel) REFERENCES DimCombustivel(idCombustivel),
+    FOREIGN KEY (idVendedor) REFERENCES DimVendedor(idVendedor)
+);
