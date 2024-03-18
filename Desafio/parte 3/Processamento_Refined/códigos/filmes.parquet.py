@@ -32,6 +32,9 @@ df = df.drop(columns=colunas_remover)
 
 df.drop_duplicates(subset='tituloPrincipal', keep='first', inplace=True)
 
+df['tempoMinutos'] = pd.to_numeric(df['tempoMinutos'], errors='coerce')
+df['tempoMinutos'] = df['tempoMinutos'].astype('Int64')
+
 print(df.head())
 
 s3_key = "s3/Refined/filmes/" 
