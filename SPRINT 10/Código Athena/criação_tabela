@@ -1,0 +1,15 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS tabela_proj (
+    tituloPrincipal STRING,
+    anoLancamento INT,
+    tempoMinutos INT,
+    genero STRING,
+    notaMedia DOUBLE,
+    numeroVotos INT,
+    generoArtista STRING
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe'
+WITH SERDEPROPERTIES (
+  'serialization.format' = '1'
+)
+STORED AS PARQUET
+LOCATION 's3://desafiowr/Refined/movies/';
