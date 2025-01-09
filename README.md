@@ -1,6 +1,3 @@
-
-![minha foto](img/foto%20minyha%20c3erta.jpg)
-
 **APRESENTAÇÃO**
 NOME: *WESLEY RUAN DE LIMA SILVA*
 IDADE: *20*
